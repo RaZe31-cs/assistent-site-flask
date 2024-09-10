@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenAI Chat</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .message-container {
+            margin-bottom: 20px;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .user-message {
+            background-color: #f0f0f0;
+            text-align: left;
+        }
+        .assistant-message {
+            background-color: #d9edf7;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="mb-4">OpenAI Chat</h1>
+    <div id="chat-container">
+        {% for message in messages %}
+            <div class="message-container">
+                {% if message.sender != '@assistant' %}
+                    <div class="alert alert-primary" role="alert">{{ message.text }}</div>
+                {% else %}
+                    <div class="alert alert-success" role="alert">{{ message.text }}</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <form id="chat-form" method="post" action="{{url_for('testingChat')}}">
+        <div class="form-group">
+            <textarea class="form-control" name="message" placeholder="Введите ваш вопрос..." rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

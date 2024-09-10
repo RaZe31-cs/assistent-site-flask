@@ -1,0 +1,36 @@
+{% extends 'layout_admin.html' %}
+
+{% block content %}
+    <h1>Настройки.</h1>
+    <p>Здесь вы можете настроить различные параметры вашего приложения.</p>
+    <h1>Ассистенты</h1>
+    <br>
+    <a href="{{ url_for('createAssistent') }}"><button class="btn btn-primary">Создать нового Ассистента</button></a>
+    <table class="table">
+        <thead></thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Id ассистента</th>
+                <th scope="col">Api ассистента</th>
+                <th scope="col">Тип доступа</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for asst in assistents %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <th>{{ asst.api }}</th>
+                    <td>{{ asst.asst_id }}</td>
+                    <td>{{ asst.type_access }}</td>
+                    <td>{{ asst.date_created }}</td>
+                    <td>
+                        <form action="{{ url_for('deleteAssistent', asstId=asst.id) }}" method="POST">
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'layout_admin.html' %}
+
+{% block content %}
+    <h1>Создание чата.</h1>
+    <p>Здесь вы можете создать новый чат с asst.</p>
+    <form action="{{ url_for('createAssistent') }}" method="post">
+        <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" name="asstId" placeholder="Id ассистента">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="type_access" placeholder="Тип доступа">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" name="api" placeholder="Api ассистента">
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    {% if message %}
+        <div>
+            <p>Сообщение: {{message}}</p>
+        </div>
+    {% endif %}
+{% endblock %}

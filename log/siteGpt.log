@@ -1,0 +1,490 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:48:05] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:48:06] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:48:06] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:48:08] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:48:54] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:52:19] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:app:Exception on /register [GET]
+Traceback (most recent call last):
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/app.py", line 142, in register
+    return render_template('register.html', form=form)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/jinja2/environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/happyuser/Projects/freelance/PavelSite/templates/register.html", line 1, in top-level template code
+    {% extends "layout.html" %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/templates/layout.html", line 45, in top-level template code
+    {% block content %}
+  File "/home/happyuser/Projects/freelance/PavelSite/templates/register.html", line 20, in block 'content'
+    {{ form.button_send_code(class="btn btn-primary", value="send_code", name="submit_button") }}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/wtforms/fields/core.py", line 176, in __call__
+    return self.meta.render_field(self, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/wtforms/meta.py", line 64, in render_field
+    return field.widget(field, **render_kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/wtforms/widgets/core.py", line 306, in __call__
+    return super().__call__(field, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/happyuser/Projects/freelance/PavelSite/venv/lib/python3.12/site-packages/wtforms/widgets/core.py", line 181, in __call__
+    return Markup("<input %s>" % self.html_params(name=field.name, **kwargs))
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: wtforms.widgets.core.html_params() got multiple values for keyword argument 'name'
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:55:14] "[35m[1mGET /register HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:55:26] "[35m[1mGET /register HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:55:26] "GET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:55:26] "GET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:55:26] "GET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 15:55:26] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:00:21] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:02:06] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:03:47] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:03:47] "[36mGET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:03:47] "[36mGET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:03:47] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:03:47] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:21:55] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:22:07] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:22:22] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:27:12] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:44:45] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:44:45] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:44:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:44:52] "POST /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:02] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:02] "[35m[1mGET /verify HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:02] "GET /verify?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:02] "GET /verify?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:02] "GET /verify?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:02] "[36mGET /verify?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:39] "GET /verify HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:42] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:42] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:45:43] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:46:23] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:46:23] "GET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:46:23] "GET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:46:23] "GET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:46:23] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:47:38] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:47:44] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:47:44] "[36mGET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:47:44] "[36mGET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:47:45] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:47:45] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:48:11] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:48:53] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:49:34] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:49:48] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:49:48] "GET /verify HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:03] "[35m[1mPOST /verify HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:03] "[36mGET /verify?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:03] "[36mGET /verify?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:03] "[36mGET /verify?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:03] "[36mGET /verify?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:43] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:43] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:44] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:50] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:50:50] "GET /verify HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:51:02] "[35m[1mPOST /verify HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:51:02] "[36mGET /verify?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:51:02] "[36mGET /verify?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:51:02] "[36mGET /verify?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:51:02] "[36mGET /verify?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:52:02] "[35m[1mGET / HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:52:03] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:52:09] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:52:09] "GET /verify HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:52:22] "[32mPOST /verify HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 16:52:22] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/data/db/models/users.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:23:40] "POST /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:23:48] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:23:48] "GET /login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:23:48] "GET /login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:23:48] "GET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:23:48] "[36mGET /login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:06] "[35m[1mGET / HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:06] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:15] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:15] "GET /verify HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:37] "[32mPOST /verify HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:37] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:39] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:40] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:24:59] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:25:12] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:25:14] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:25:20] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:02] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:06] "[32mPOST /chat HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:06] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:51] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:53] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:54] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:56] "[32mPOST /chat HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:26:56] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:33] "[33mGET /дщпшт HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:36] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:36] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:40] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:41] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:43] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:43] "[36mGET /chat?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:43] "[36mGET /chat?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:43] "[36mGET /chat?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:43] "[36mGET /chat?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:55] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:55] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:57] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:57] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:57] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:59] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:59] "[36mGET /chat?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:59] "[36mGET /chat?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:59] "[36mGET /chat?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:27:59] "[36mGET /chat?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:28] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:28] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:30] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:31] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:32] "[32mPOST /chat HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:32] "GET /home HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:28:38] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:29:00] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:30:40] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:30:41] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:30:46] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:30:55] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:31:48] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:31:50] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:31:53] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug: * Detected change in '/home/happyuser/Projects/freelance/PavelSite/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://localhost:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 895-595-632
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:33:41] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:33:45] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:34:23] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:34:24] "GET /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:34:28] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:34:34] "POST /chat HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:34:39] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [07/Aug/2024 17:34:39] "GET /login HTTP/1.1" 200 -
+ERROR:app:Exception on /viewMessage/0xKOj6UM0dPG8PqaEGPlMqN18 [POST]
+Traceback (most recent call last):
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/gpt-site2/app.py", line 239, in viewMessage
+    return send_from_directory(directory=app.config['UPLOAD_FOLDER'], path=messageId + '.txt')
+KeyError: 'UPLOAD_FOLDER'
+ERROR:app:Exception on /testingChat [POST]
+Traceback (most recent call last):
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/root/gpt-site2/venv/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/root/gpt-site2/app.py", line 332, in testingChat
+    resMessage = getmessageFromOpenAI(message, type_access, thread_id=user.thread_id)
+  File "/root/gpt-site2/utils.py", line 157, in getmessageFromOpenAI
+    return messages[-1].content.text.value
+TypeError: 'SyncCursorPage[Message]' object is not subscriptable

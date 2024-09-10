@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Чат с OpenAi</h2>
+<form method="POST" action="{{ url_for('chat') }}">
+    {{ form.hidden_tag() }}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.user == 'user' %}
+                <div class="alert alert-info" role="alert">
+                    <strong>Запрос: </strong> {{ message.message }}
+                </div>
+            {% else %}
+                <div class="alert alert-success" role="alert">
+                    <strong>Ответ: </strong> {{ message.message }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <div class="form-group">
+        {{ form.message.label(class="form-label") }}
+        {{ form.message(class="form-control", placeholder="Напишите здесь своё сообщение") }}
+    </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+</form>
+{% endblock %}

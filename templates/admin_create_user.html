@@ -1,0 +1,29 @@
+{% extends 'layout_admin.html' %}
+
+{% block content %}
+    <h1>Создание аккаунта.</h1>
+    <p>Здесь вы можете создать новый пользовательский тестовый аккаунт.</p>
+    <form action="{{ url_for('createUser') }}" method="post">
+        <div class="row">
+            <div class="col">
+              <input type="text" class="form-control" name="name" placeholder="Имя">
+            </div>
+            <div class="col">
+                <select id="inputState" class="form-control" name="type_access">
+                    {% for asst in assistents %}
+                        <option>{{asst.type_access}}</option>
+                    {% endfor %}
+                </select>
+                <p>Выберите тип доступа</p>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% if message %}
+        <div>
+            <p>Сообщение: {{message}}</p>
+            <textarea rows="2" cols="50" readonly>{{ code }}</textarea>
+        </div>
+    {% endif %}
+{% endblock %}
