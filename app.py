@@ -35,7 +35,7 @@ mail = Mail(app)
 
 verification_codes = {}
 
-logging.basicConfig(format='%(asctime)s;%(levelname)s;%(message)s', filename='log/siteGpt.log', filemode='a')
+logging.basicConfig(format='%(asctime)s;%(levelname)s;%(message)s', filename='log/siteGpt.log', filemode='a', level="INFO")
 
 logging.info('[START]: Site started')
 
@@ -370,7 +370,7 @@ def testingChat():
         user = get_by_code_user(code)
         type_access = user.type_access
         date_created = user.time_start
-        if date_created + timedelta(hours=2) > datetime.now():
+        if date_created + timedelta(hours=2) < datetime.now():
             logging.info(f'[TESTING CHAT]: User is in trial period, code: {code}')
             return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors="Истек срок пробного использования")
         if user is None:
