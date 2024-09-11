@@ -397,7 +397,7 @@ def testingChat():
             executionTime = endTime - startTime
             writeDialogMessage(message, resMessage, executionTime, code)
             return render_template('chat_chat.html', type_access=type_access, messages=session['messages'])
-        return render_template('chat_chat.html')
+        return render_template('chat_chat.html', messages=session['messages'])
     return redirect(url_for('putCode'))
 
 
