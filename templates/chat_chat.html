@@ -41,6 +41,9 @@
             </div>
         {% endfor %}
     </div>
+    {% if errors %}
+        <div class="alert alert-danger" role="alert">{{ errors }}</div>
+    {% endif %}
     <form id="chat-form" method="post" action="{{url_for('testingChat')}}">
         <div class="form-group">
             <textarea class="form-control" name="message" placeholder="Введите ваш вопрос..." rows="4"></textarea>

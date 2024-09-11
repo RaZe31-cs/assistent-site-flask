@@ -35,7 +35,9 @@ mail = Mail(app)
 
 verification_codes = {}
 
-logging.basicConfig(filename='log/siteGpt.log', filemode='a')
+logging.basicConfig(format='%(asctime)s;%(levelname)s;%(message)s', filename='log/siteGpt.log', filemode='a')
+
+logging.info('[START]: Site started')
 
 global_init()
 
@@ -108,6 +110,7 @@ def verify():
 
 
 def send_code(email):
+    logging.info(f'Sending verification code to {email}')
     if not email:
         return {'error': 'Email is required'}, 400
 
@@ -117,14 +120,13 @@ def send_code(email):
     msg = Message('Your Verification Code', recipients=[email])
     msg.body = f'Your verification code is {code}'
     mail.send(msg)
+    logging.info(f'Verification code sent to {email}')
 
     return {'message': 'Verification code sent'}, 200
 
 
 
 def verify_code(code):
-    print(verification_codes)
-    print(session)
     sess = create_session()
     user = sess.query(User).filter(User.id == session.get('user_id', 0)).first()
     email = user.email
@@ -132,6 +134,7 @@ def verify_code(code):
         return "Error"
     if verification_codes[email] == code:
         del verification_codes[email]
+        logging.info(f'Verification code verified for {email}')
         return jsonify({'message': 'Verification successful'}), 200
     else:
         return jsonify({'error': 'Invalid code'}), 400
@@ -139,15 +142,18 @@ def verify_code(code):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    logging.info('[LOGIN]: User trying to login')
     sess = create_session()
     form = LoginForm()
     if form.validate_on_submit():
         user = sess.query(User).filter(User.email==form.email.data).first()
         sess.close()
         if user and check_password_hash(user.password, form.password.data):
+            logging.info(f'User {user.email} logged in')
             session['user_id'] = user.id
             return redirect(url_for('home'))
         else:
+            logging.info(f'User {form.email.data} failed to login')
             flash('Войти не удалось. Пожалуйста, проверьте адрес электронной почты и пароль', 'danger')
     return render_template('login.html', form=form)
 
@@ -164,96 +170,121 @@ def register():
         sess.close()
         flash('Ваш аккаунт был создан! Теперь вам нужно подтвердить почту', 'success')
         send_code(form.email.data)
+        logging.info(f'User {form.email.data} registered')
         return redirect(url_for('verify'))
+    logging.info("Registration")
     return render_template('register.html', form=form)
 
 @app.route('/logout')
 def logout():
+    logging.info('[LOGOUT]: User logged out')
     session.pop('user_id', None)
     return redirect(url_for('login'))
 
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
+    logging.info('[CHAT]: User trying to chat')
     sess = create_session()
     if 'user_id' not in session:
+        logging.info('[CHAT]: User not logged in')
         return redirect(url_for('register'))
     user = sess.query(User).filter(User.id == int(session['user_id'])).first()
     if not user.verification:
+        logging.info('[CHAT]: User not verified')
         return redirect(url_for('verify'))
-    print(user)
     form = MessageForm()
     if form.validate_on_submit() and user:
         if user.last_message_time is not None and (datetime.utcnow() - user.last_message_time < timedelta(days=1) and user.messages_today >= 3):
             flash("Вы достигли лимита сообщений на сегодня. Зарегистрируйтесь", 'danger')
+            logging.info('[CHAT]: User exceeded message limit')
             return redirect(url_for('home'))
         else:
+            logging.info(f'[CHAT]: User sent message: {form.message.data}')
             user.messages_today += 1
             user.last_message_time = datetime.utcnow()
             sess.commit()
             chat_response = reqChatGpt(form.message.data)
+            logging.info(f'ChatGPT responded with: {chat_response}')
             session['listMessage'] += [{"user": "user", "message": form.message.data}, {"user": "chatgpt", "message": chat_response}]
             flash('Сообщение отправлено!', 'success')
-            print(session['listMessage'])
             return render_template('chat.html', form=form, messages=session['listMessage'])
     return render_template('chat.html', form=form)
 
 
 @app.route('/admin_login', methods=['GET', 'POST'])
 def adminLogin():
+    logging.info('[ADMIN LOGIN]: Admin trying to login')
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
         with create_session() as sess:
             admin = sess.query(Admin).filter(Admin.username == username).first()
             if admin and check_password_hash(admin.password, password):
+                logging.info(f'Admin {username} logged in')
                 session['admin_id'] = admin.id
                 return redirect(url_for('adminPanel'))
             else:
+                logging.info(f'Admin {username} failed to login')
                 flash('Неверный логин или пароль')
     return render_template('admin_login.html')
 
 @app.route('/admin_settings', methods=['GET', 'POST'])
 def adminSettings():
+    logging.info('[ADMIN SETTINGS]: Admin trying to access settings')
     if session.get('admin_id', False):
+        logging.info('[ADMIN SETTINGS]: Admin accessing settings')
         return render_template('admin_settings.html', assistents=get_all_assistents())
     return redirect(url_for('adminLogin'))
 
 @app.route('/deleteAssistent/<asstId>', methods=['POST'])
 def deleteAssistent(asstId):
+    logging.info('[ADMIN SETTINGS]: Admin trying to delete assistant')
     if session.get('admin_id', False):
         with create_session() as sess:
             asst = sess.query(Assistent).filter(Assistent.id == asstId).first()
             if asst:
                 sess.delete(asst)
                 sess.commit()
+        logging.info('[ADMIN SETTINGS]: Assistant deleted')
         return render_template('admin_settings.html', assistents=get_all_assistents())
+    logging.info('[ADMIN SETTINGS]: Failed to delete assistant')
     return redirect(url_for('adminLogin'))
 
 
 @app.route('/admin_users', methods=['GET', 'POST'])
 def adminUsers():
+    logging.info('[ADMIN USERS]: Admin trying to access users')
     if session.get('admin_id', False):
+        logging.info('[ADMIN USERS]: Admin accessing users')
         return render_template('admin_users.html', users=sorted(get_all_users(), key=lambda x: x.time_start, reverse=True))
+    logging.info('[ADMIN USERS]: Admin failed to access users')
     return redirect(url_for('adminLogin'))
 
 
 @app.route('/viewMessage/<messageId>', methods=['GET', 'POST'])
 def viewMessage(messageId):
+    logging.info(f'[VIEW MESSAGE]: Admin check messages with messageId: {messageId}, admin_id: {session.get("admin_id", "")}')
     if session.get('admin_id', False):
+        logging.info('[VIEW MESSAGE]: successfully accessed messages')
         return send_from_directory(directory=app.config['UPLOAD_FOLDER'], path=messageId + '.txt')
+    logging.info('[VIEW MESSAGE]: Failed to access messages')
     return redirect(url_for('adminLogin'))
 
 
 
 @app.route('/admin_panel', methods=['GET', 'POST'])
 def adminPanel():
+    logging.info('[ADMIN PANEL]: Admin trying to access panel')
     if session.get('admin_id', False):
+        logging.info('[ADMIN PANEL]: Successfully accessed panel')
         return render_template('admin_panel.html')
+    logging.info('[ADMIN PANEL]: Failed to access panel')
     return redirect(url_for('adminLogin'))
 
 
 @app.route('/deleteUser/<userId>', methods=['GET', 'POST'])
 def deleteUser(userId):
+    logging.info(f'[DELETE USER]: Admin trying to delete user with userId: {userId}, admin_id: {session.get("admin_id", "")}')
     if session.get('admin_id', False):
         if request.method == 'POST':
             with create_session() as sess:
@@ -261,14 +292,18 @@ def deleteUser(userId):
                 if user:
                     sess.delete(user)
                     sess.commit()
+            logging.info('[DELETE USER]: User deleted successfully')
             return render_template('admin_users.html', users=get_all_users())
+        logging.info('[DELETE USER]: Failed to delete user')
         return 'Удаление пользователя не возможно'
+    logging.info('[DELETE USER]: Failed to delete user')
     return redirect(url_for('adminLogin'))
 
 
 
 @app.route('/createUser', methods=['GET', 'POST'])
 def createUser():
+    logging.info(f'[CREATE USER]: Admin trying to create user, admin_id: {session.get("admin_id", "")}')
     if session.get('admin_id', False):
         if request.method == 'POST':
             name = request.form.get('name')
@@ -281,27 +316,33 @@ def createUser():
                     break
             saveUser(name, type_access, code, thread_id)
             newMessageTxt(code)
+            logging.info(f'[CREATE USER]: User created successfully, name: {name}, type_access: {type_access}, code: {code}')
             return render_template('admin_create_user.html', message=f'Пользователь успешно создан! Ниже указан код', code=code, assistents=get_all_assistents())
         return render_template('admin_create_user.html', assistents=get_all_assistents())
+    logging.info(f'[CREATE USER]: User created failed')
     return redirect(url_for('adminLogin'))
 
 
 @app.route('/createAssistent', methods=['GET', 'POST'])
 def createAssistent():
+    logging.info(f'[CREATE ASSISTANT]: Admin trying to create assistant, admin_id: {session.get("admin_id", "")}')
     if session.get('admin_id', False):
         if request.method == 'POST':
             api = request.form.get('api')
             asstId = request.form.get('asstId')
             type_access = request.form.get('type_access')
             saveAssistent(api, asstId, type_access)
+            logging.info(f'[CREATE ASSISTANT]: Assistant created successfully, api: {api}, asstId: {asstId}, type_access: {type_access}')
             return render_template('admin_create_asst.html', message='Ассистент успешно создан!')
         return render_template('admin_create_asst.html')
+    logging.info(f'[CREATE ASSISTANT]: Assistant created failed')
     return redirect(url_for('adminLogin'))
 
 
 
 @app.route('/putCode', methods=['GET', 'POST'])
 def putCode():
+    logging.info(f'[PUT CODE]: User trying to put code')
     session['messages'] = []
     if request.method == 'POST':
         code = request.form.get('code')
@@ -309,7 +350,9 @@ def putCode():
             user = sess.query(UserTest).filter(UserTest.code == code).first()
             if user:
                 session['code'] = user.code
+                logging.info(f'[PUT CODE]: User put code successfully, code: {code}')
                 return redirect(url_for('testingChat'))
+            logging.info(f'[PUT CODE]: User failed to put code, code: {code}')
             return render_template('chat_code.html', message='Код не найден')
     return render_template('chat_code.html')
             
@@ -317,31 +360,43 @@ def putCode():
 
 @app.route('/testingChat', methods=['GET', 'POST'])
 def testingChat():
+    startTime = time.time()
     code = session.get('code', False)
+    logging.info(f'[TESTING CHAT]: User trying to test chat, code: {code}')
     if not session.get('messages', False):
+        logging.info('[TESTING CHAT]: Messages not found, creating new in session')
         session['messages'] = []
     if code:
-        if request.method == 'POST':
-            message = request.form.get('message', None)
-            print(message)
-            user = get_by_code_user(code)
-            type_access = user.type_access
-            if message is None or message == '':
-                return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors=["Сообщение не может быть пустым"])
-            if user is None:
-                return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors=["Вашего кода нету в базе данных"])
-            session['messages'].append({'sender': user.name, 'text': message})
-            resMessage = getmessageFromOpenAI(message, type_access, thread_id=user.thread_id)
-            session['messages'].append({'sender': '@assistant', 'text': resMessage})
-            return render_template('chat_chat.html', type_access=type_access, messages=session['messages'])
         user = get_by_code_user(code)
-        if user is None:
-            return redirect(url_for('putCode'))
         type_access = user.type_access
         date_created = user.time_start
         if date_created + timedelta(hours=2) > datetime.now():
-            ## TODO: delete account
-            return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors=["Истек срок пробного использования"])
+            logging.info(f'[TESTING CHAT]: User is in trial period, code: {code}')
+            return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors="Истек срок пробного использования")
+        if user is None:
+            logging.warning(f'[TESTING CHAT]: User not found in database, code: {code}')
+            return redirect(url_for('putCode'))
+        if request.method == 'POST':
+            message = request.form.get('message', None)
+            logging.info(f'[TESTING CHAT]: Message: {message}')
+            if message is None or message == '':
+                endTime = time.time()
+                executionTime = endTime - startTime
+                writeDialogMessage(message, "", executionTime, code, error="Empty message")
+                return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors="Сообщение не может быть пустым")
+            if user is None:
+                endTime = time.time()
+                executionTime = endTime - startTime
+                writeDialogMessage(message, "", executionTime, code, error=f"No user by code: {code}")
+                return render_template('chat_chat.html', type_access=type_access, messages=session['messages'], errors="Вашего кода нету в базе данных")
+            session['messages'].append({'sender': user.name, 'text': message})
+            resMessage = getmessageFromOpenAI(message, type_access, thread_id=user.thread_id)
+            session['messages'].append({'sender': '@assistant', 'text': resMessage})
+            logging.info(f'[TESTING CHAT]: Message sent successfully: {message} -> {resMessage}')
+            endTime = time.time()
+            executionTime = endTime - startTime
+            writeDialogMessage(message, resMessage, executionTime, code)
+            return render_template('chat_chat.html', type_access=type_access, messages=session['messages'])
         return render_template('chat_chat.html')
     return redirect(url_for('putCode'))
 

@@ -157,3 +157,13 @@ def getmessageFromOpenAI(message, typeAccess, thread_id):
             return messages.data[0].content[0].text.value
         else:
             return run.status
+        
+
+
+def writeDialogMessage(msgUser, msgAssistant, timeRes, code, error=None):
+    now = datetime.now(tz=pytz.timezone('Asia/Irkutsk'))
+    with open(f'messages/{code}.txt', 'a') as file:
+        file.write(f'\n\nTime[Irkutsk]: {now}\nUserMessage: {msgUser}\nAssistantMessage: {msgAssistant}\nTimeRes[Seconds]: {timeRes}\n')
+        if error:
+            file.write(f'Error: {error}\n')
+
