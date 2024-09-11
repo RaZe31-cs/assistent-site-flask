@@ -8,6 +8,9 @@ from data.db.db_session import global_init, create_session
 from openai import OpenAI
 from datetime import datetime, timedelta
 from data.db.models.users import User
+from data.db.models.assistents import Assistent
+from data.db.models.admins import Admin
+from data.db.models.usersTest import UserTest
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import dotenv_values
 from utils import *
